@@ -10,7 +10,1402 @@
 <atom:link href="https://your-website-url.example.com/index.xml" rel="self" type="application/rss+xml"/>
 <description>A website about nascar data</description>
 <generator>quarto-1.9.36</generator>
-<lastBuildDate>Mon, 30 Mar 2026 05:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 10 Apr 2026 05:00:00 GMT</lastBuildDate>
+<item>
+  <title>Matt Kenseth and how he changed NASCAR forever</title>
+  <dc:creator>Joshua Machan</dc:creator>
+  <link>https://your-website-url.example.com/posts/matt-kenseth-and-the fate-of-nascar/</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>NASCAR, a sport overshadowed by literally everything, every molecule, everyone and their mother that you can possibly think of. As much as I have been a fan of NASCAR and many drivers apart from it, It’s a very love-hate relationship, From bad organizational management to main streaming gimmicks that ruin the competition, sponsors that shuffle around like a deck of cards, and all of it leading to dozens and dozens and dozens of empty seats week after week, it’s a hard time to be a fan of the sport. It’s even overshadowed by F1 nowadays, a global organization that has a better market value to appeal to people in America than the race organization that was supposed to appeal to Americans. Do you expect me to convince a bunch of 20 year olds that turning left for 4 hours is exciting? No, but I shall try to make it seem less boring than most people say it to be. Now, If you asked me this question about 30 years ago, I’d say I can sell you this as if I were a girl scout selling cookies. Hell, there was once a time where their viewership was almost on par with the NFL. But what happened? How did this sport go from the thing that everyone was talking about to the thing the weird kid in the back of the bus likes? (I am that weird kid) Well lets time travel back to the great age of 2003, the moment where one of the most controversial championship seasons occurred, and it came from the most unlikely of drivers…</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(nascaR.data)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gt)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">cup <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">load_series</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"cup"</span>)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">Mk <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">get_driver_info</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Matt Kenseth"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"season"</span>)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9">MattKseason <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cup <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Driver) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb1-13">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Pts=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(Pts),</span>
+<span id="cb1-14">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Wins=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(Win)</span>
+<span id="cb1-15">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(total_Pts))  </span>
+<span id="cb1-16"></span>
+<span id="cb1-17">MattKseason <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(total_Pts <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3000</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cols_label</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Pts=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Points"</span>, </span>
+<span id="cb1-21">            <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Wins=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Race Win"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_header</span>(</span>
+<span id="cb1-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"How Matt Kenseths 2003 Championship season changed Nascar"</span>,</span>
+<span id="cb1-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"This season defined of how consistent top 10 finishes and a well running race car can create a winning season, but that begs the question, is staying consistent more important than winning the race?"</span></span>
+<span id="cb1-25">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb1-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb1-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"title"</span>)</span>
+<span id="cb1-28">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb1-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>),</span>
+<span id="cb1-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_title</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"subtitle"</span>)</span>
+<span id="cb1-31">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-32">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_source_note</span>(</span>
+<span id="cb1-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">source_note =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: nascaR.data | By: Joshua Machan"</span>)</span>
+<span id="cb1-34">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-35">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_style</span>(</span>
+<span id="cb1-36">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">locations =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cells_column_labels</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">everything</span>()),</span>
+<span id="cb1-37">     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">style =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(</span>
+<span id="cb1-38">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_borders</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sides =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bottom"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">px</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)),</span>
+<span id="cb1-39">       <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cell_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>)</span>
+<span id="cb1-40">     )</span>
+<span id="cb1-41">   ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb1-42">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_row_striping</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-43">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">opt_table_lines</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"none"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-44">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data_color</span>(</span>
+<span id="cb1-45">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vars</span>(total_Pts),</span>
+<span id="cb1-46">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colors =</span> scales<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">col_numeric</span>(</span>
+<span id="cb1-47">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb1-48">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"orange"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>),</span>
+<span id="cb1-49">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">domain =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>)</span>
+<span id="cb1-50">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb1-51">   <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">data_color</span>(</span>
+<span id="cb1-52">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">columns =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">vars</span>(total_Wins),</span>
+<span id="cb1-53">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">colors =</span> scales<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">col_numeric</span>(</span>
+<span id="cb1-54">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">palette =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(</span>
+<span id="cb1-55">        <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"white"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"green"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>),</span>
+<span id="cb1-56">      <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">domain =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">NULL</span>)</span>
+<span id="cb1-57">  )</span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div id="vioulhilsy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vioulhilsy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vioulhilsy thead, #vioulhilsy tbody, #vioulhilsy tfoot, #vioulhilsy tr, #vioulhilsy td, #vioulhilsy th {
+  border-style: none;
+}
+
+#vioulhilsy p {
+  margin: 0;
+  padding: 0;
+}
+
+#vioulhilsy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vioulhilsy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vioulhilsy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vioulhilsy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_bottom_border {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_col_headings {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vioulhilsy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vioulhilsy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vioulhilsy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vioulhilsy .gt_column_spanner {
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vioulhilsy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vioulhilsy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vioulhilsy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vioulhilsy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vioulhilsy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vioulhilsy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vioulhilsy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vioulhilsy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vioulhilsy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vioulhilsy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vioulhilsy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vioulhilsy .gt_first_summary_row {
+  border-top-style: none;
+  border-top-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vioulhilsy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vioulhilsy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: none;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: none;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vioulhilsy .gt_table_body {
+  border-top-style: none;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vioulhilsy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vioulhilsy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vioulhilsy .gt_left {
+  text-align: left;
+}
+
+#vioulhilsy .gt_center {
+  text-align: center;
+}
+
+#vioulhilsy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vioulhilsy .gt_font_normal {
+  font-weight: normal;
+}
+
+#vioulhilsy .gt_font_bold {
+  font-weight: bold;
+}
+
+#vioulhilsy .gt_font_italic {
+  font-style: italic;
+}
+
+#vioulhilsy .gt_super {
+  font-size: 65%;
+}
+
+#vioulhilsy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vioulhilsy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vioulhilsy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vioulhilsy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vioulhilsy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vioulhilsy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vioulhilsy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vioulhilsy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vioulhilsy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="3" class="gt_heading gt_title gt_font_normal" style="text-align: left; color: #000000; font-weight: bold;">How Matt Kenseths 2003 Championship season changed Nascar</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="3" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="text-align: left; color: #000000;">This season defined of how consistent top 10 finishes and a well running race car can create a winning season, but that begs the question, is staying consistent more important than winning the race?</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Driver" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Driver</th>
+<th id="total_Pts" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Points</th>
+<th id="total_Wins" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #000000; font-size: 12; font-weight: bold" scope="col">Race Win</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Matt Kenseth</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF0000; color: #FFFFFF">5022</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Jimmie Johnson</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF2B00; color: #FFFFFF">4932</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #7DFF64; color: #000000">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Dale Earnhardt Jr.</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF4500; color: #FFFFFF">4815</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #B1FF9A; color: #000000">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Jeff Gordon</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF4A00; color: #FFFFFF">4785</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #7DFF64; color: #000000">3</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Kevin Harvick</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF4D00; color: #FFFFFF">4770</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Ryan Newman</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF5600; color: #FFFFFF">4711</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #0000FF; color: #FFFFFF">8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Tony Stewart</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF6C00; color: #FFFFFF">4549</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #B1FF9A; color: #000000">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Bobby Labonte</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF8100; color: #000000">4377</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #B1FF9A; color: #000000">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Bill Elliott</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF8900; color: #000000">4303</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Terry Labonte</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF9800; color: #000000">4162</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Kurt Busch</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FF9A00; color: #000000">4150</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #00FF00; color: #000000">4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Jeff Burton</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FF9E00; color: #000000">4109</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Jamie McMurray</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFAC2A; color: #000000">3965</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Rusty Wallace</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFAD2F; color: #000000">3950</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Michael Waltrip</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFAF34; color: #000000">3934</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #B1FF9A; color: #000000">2</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Robby Gordon</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFB64A; color: #000000">3856</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #B1FF9A; color: #000000">2</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Mark Martin</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFBD5F; color: #000000">3769</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Sterling Marlin</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFC065; color: #000000">3745</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Jeremy Mayfield</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFC067; color: #000000">3736</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Greg Biffle</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFC470; color: #000000">3696</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Ward Burton</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFD191; color: #000000">3550</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Elliott Sadler</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFD497; color: #000000">3525</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Ricky Rudd</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFD497; color: #000000">3521</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Johnny Benson Jr.</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFDBA8; color: #000000">3448</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Joe Nemechek</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFDDAD; color: #000000">3426</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Dale Jarrett</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFE3BC; color: #000000">3358</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Ricky Craven</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFE5C1; color: #000000">3334</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #DBFFCD; color: #000000">1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Dave Blaney</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFF2E1; color: #000000">3194</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Driver">Jimmy Spencer</td>
+<td class="gt_row gt_right" headers="total_Pts" style="background-color: #FFF7EB; color: #000000">3147</td>
+<td class="gt_row gt_right" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Driver">Kenny Wallace</td>
+<td class="gt_row gt_right gt_striped" headers="total_Pts" style="background-color: #FFFFFF; color: #000000">3061</td>
+<td class="gt_row gt_right gt_striped" headers="total_Wins" style="background-color: #FFFFFF; color: #000000">0</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="3" class="gt_sourcenote">Source: nascaR.data | By: Joshua Machan</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<p>The name at the very top of the list may not be one you can easily think of when you think of NASCAR. Not Dale Earnhardt, not Jeff Gordon, but a guy from Cambrdige, Wisconsin named Matt Kenseth. In just his 6th year at the highest level of NASCAR, he won the season championship. Now can you tell me what the issue is with this graph? Anyone? That’s right, there’s only one win. It was the third race of the season and didn’t win a race until the very next year in Rockingham, North Carolina. He’s the only driver to win the championship with one win in the modern era of NASCAR, and the fourth driver to do so in the sports history. While Kenseth did have a single win, his biggest factor of staying on top was his consistency, finishing in the top 10 a total of 25 times out of 36 races. If anyone has a calculator on them, that’s 69% of the 2003 season. Now another thing that’s out of place is the driver who finished in 5th that season, Ryan Newman, another driver who has had a great but interesting career. Don’t you all find it odd that the driver with the most wins of 8, finished in 5th? If I were Ryan, I’d be pissed. Here’s a bigger question though, was this just a one and done season or was Matt actually better than his championship season?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">MattBG <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span>Mk <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Series <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cup"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Season) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb2-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Avg_Finish =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span><span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Avg Finish</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">`</span>),</span>
+<span id="cb2-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Wins=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(Wins)</span>
+<span id="cb2-7">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(total_Wins)) </span>
+<span id="cb2-8"></span>
+<span id="cb2-9">SEVENWIN <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> MattBG <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2013</span>) </span>
+<span id="cb2-11">CHAMPION <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> MattBG <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb2-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span>)</span>
+<span id="cb2-13"></span>
+<span id="cb2-14"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>MattBG, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight=</span> total_Wins)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>SEVENWIN, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight=</span> total_Wins),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"yellow"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_bar</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>CHAMPION, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">weight=</span> total_Wins),<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">fill=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-18"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">coord_flip</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb2-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Win Count"</span>, </span>
+<span id="cb2-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Matt Kenseths Career: A Wild Millenium"</span>, </span>
+<span id="cb2-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Through the ups and downs, Kenseth has had some good strides and some missteps."</span>, </span>
+<span id="cb2-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: nascaR.data | By: Joshua Machan"</span></span>
+<span id="cb2-24">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb2-25">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb2-26">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb2-27">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb2-28">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>), </span>
+<span id="cb2-29">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), </span>
+<span id="cb2-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb2-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb2-32">    ) </span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/matt-kenseth-and-the fate-of-nascar/index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now after that 2003 Season, NASCAR thought “Well we can’t let something like this happen again, We want a champion with wins and consistency, not just consistency” Thus the Matt Kenseth Rule was officially adopted the next year, creating the Chase for the Cup. Looking at Matt’s Career, he had a very up and down career, and yet 2003 wasn’t even his best season. That Yellow line was his first year with his new ride at Joe Gibbs Racing, Yes Coach Joe Gibbs from the washington redskins, that Joe Gibbs. Kenseth went on to win 7 wins and finished second in points for the championship behind Jimmie Johnson. A total of 19 points was spread between the two of them under the modified chase for the cup.</p>
+<p>Now lets talk about the Chase, on paper this seems like a good way to determine a champion for the season, but there is one main flaw that debunks the system, that being the unpredictable nature of the sport. Pole leaders change each race, every pit stop matters, debris can come out of nowhere and destroy a car’s chance of winning, and on track rivalries can happen. If there’s one thing that could ruin a championship run, it’s revenge when you least expect it.</p>
+<p>Just two years later after his second place finish for the cup, Kenseth gets spun out by Joey Logano in Kansas and dashes his hopes for the championship as he would be eliminated the following week at Talladega after Joey wins his sixth race that season. The next week in Martinsville, he intentionally wrecks him and does the exact same thing that Logano did to him just two weeks prior. One thing you need to know about Matt Kenseth is that he is considered one of the nicest guys in the garage and he’s the least likely to get a temper on the track, so it was very uncharacteristic of him to do this. But when it comes to a guy like Joey Logano, who is by far one of the most controversial drivers in the sports history, I personally don’t blame him. This moment in Martinsville is regarded as one of the most infamous moments in recent memory, and is a perfect example of how the playoff system isn’t so picture perfect. Matt Kenseth’s Teammate Denny Hamlin said after the crash occurred “I just can’t get over what this series has come to. Just how f****** up it is. How do you really crown a real champion now? It’s just the wild, wild west.” This moment became so infamous that NASCAR had to add more to the Matt Kenseth rule. So yeah the Chase is a mixed bag to say the least. Yet with how the points are distributed after multiple playoff and race format changes. Do you think that changes would affect Kenseth and the best drivers?</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">top20 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cup <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Driver) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarize</span>(</span>
+<span id="cb3-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TotalPoints =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(Pts, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">na.rm=</span><span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span>
+<span id="cb3-6">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">top_n</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">wt=</span>TotalPoints)</span>
+<span id="cb3-9"></span>
+<span id="cb3-10">FinLinechart <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> cup <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Season <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2003</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">filter</span>(Driver <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%in%</span> top20<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>Driver) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(Season, Driver) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> </span>
+<span id="cb3-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">summarise</span>(</span>
+<span id="cb3-15">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Avg_Finish =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mean</span>(Finish),</span>
+<span id="cb3-16">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">total_Wins=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(Win)</span>
+<span id="cb3-17">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">desc</span>(total_Avg_Finish)) </span>
+<span id="cb3-18"></span>
+<span id="cb3-19"></span>
+<span id="cb3-20"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb3-21">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_line</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data=</span>FinLinechart, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x=</span>Season, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span>total_Avg_Finish, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">group=</span>Driver)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span>Driver) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb3-22">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb3-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Total Points"</span>, </span>
+<span id="cb3-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Nascars Biggest Point Getters"</span>, </span>
+<span id="cb3-25">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"These drivers were known as some of the greatest in their era, heres a look at where Matt stands in the mix."</span>, </span>
+<span id="cb3-26">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">caption=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Source: nascaR.data | By: Joshua Machan"</span></span>
+<span id="cb3-27">    ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb3-28">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> </span>
+<span id="cb3-29">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme</span>(</span>
+<span id="cb3-30">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">face =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"bold"</span>),</span>
+<span id="cb3-31">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">axis.title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>), </span>
+<span id="cb3-32">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.subtitle =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_text</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">size=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>), </span>
+<span id="cb3-33">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">panel.grid.minor =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">element_blank</span>(),</span>
+<span id="cb3-34">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">plot.title.position =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"plot"</span></span>
+<span id="cb3-35">    ) </span></code></pre></div></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://your-website-url.example.com/posts/matt-kenseth-and-the fate-of-nascar/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Some of these drivers retired in the mid 2000s and 2010s hence why some of them are often shorter lines than others. You have your best modern drivers like Kyle Busch, Jimmie Johnson, and Martin Truex Jr.&nbsp;just to name a few, and our good ole chaos maker Kenseth sits around 18th within the 20 best point getters in the modern era of NASCAR. With that Matt Kenseth Rule changing the format of how to crown a champion, this awoke something in NASCAR to try to mainstream the sport even more. Well if you know the old saying, if it aint broke then bash with a crow bar and scatter the remains. What do I mean by this? Over the last couple of years, NASCAR has been changing the way they distribute points, and are currently still doing, ugh Stage Points. Ever wanted to see segmented racing in the actual race? me neither it sounds like it will make the playoff picture even worse than when Kenseth won it by just being consistent. I understand their thought process behind this because they wanted to limit the amount of just boredom of watching them go around, but at the same time it leads to massive inconsistency within the top drivers because now it’s essentially bonus points for where they finish one third or two thirds the way into a race. Ok, I’m off my soap box about the stage points.</p>
+<p>So where does NASCAR go into the new age? Personally I feel like meddling from the top needs to stop as soon as possible, but at the same time drivers that change up the status quo make it seem more interesting and less robotic if that makes sense. Matt Kenseth always struck me as such an interesting driver. He didn’t have a brash racing style or outspoken personality, but rather he did what nobody else did in NASCAR. He became so consistent that he literally rewrote the game itself. In a sport (YES A SPORT) like NASCAR, It’s about timing, power and the ability to outlast your opponents in the fastest environment in the world, but not many men has done it like Matt Kenseth. So the next time if you’re flipping through channels, and happen to land at cars turning left, take some time to appreciate the art, the intricacies, the craziness, and the sport of NASCAR.</p>
+
+
+
+ ]]></description>
+  <category>Nascar</category>
+  <category>Matt Kenseth</category>
+  <category>stock car racing</category>
+  <guid>https://your-website-url.example.com/posts/matt-kenseth-and-the fate-of-nascar/</guid>
+  <pubDate>Fri, 10 Apr 2026 05:00:00 GMT</pubDate>
+  <media:content url="https://your-website-url.example.com/posts/matt-kenseth-and-the fate-of-nascar/image.png" medium="image" type="image/png" height="98" width="144"/>
+</item>
 <item>
   <title>Post With Code</title>
   <dc:creator>Harlow Malloc</dc:creator>
